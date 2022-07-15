@@ -22,7 +22,6 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
-
   const getImages = () => {
     setIsLoading(true);
 
@@ -38,12 +37,10 @@ const App = () => {
 
       .finally(() => setIsLoading(false));
   };
-
   const onChangeQuery = query => {
     if (query === searchQuery) {
       return;
     }
-
     setSearchQuery(query);
     setImages([]);
     setCurrentPage(1);
