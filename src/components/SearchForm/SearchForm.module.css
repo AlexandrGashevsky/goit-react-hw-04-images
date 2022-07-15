@@ -1,0 +1,22 @@
+.SearchForm {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+ 
+  background-color: rgb(31, 214, 107);
+ 
+  
+}
+.buttonForm {
+    border: rgb(31, 214, 107);
+    background-color: white;
+}
+.input {
+    border: none;
+    outline: none;
+}
+
+.SearchForm-input::placeholder {
+  font: inherit;
+  font-size: 18px;
+}
