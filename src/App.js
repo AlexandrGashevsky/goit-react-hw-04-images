@@ -19,10 +19,22 @@ const App = () => {
   
 
   useEffect(() => {
-    if (searchQuery) {
-      getImages();
+    if (searchQuery && images.length === 0) {
+      setIsLoading(true);
+
+    fetchImages(searchQuery, currentPage)
+      .then(({ hits, total }) => {
+        setImages(prev => [...prev, ...hits]);
+        setCurrentPage(prev => prev + 1);
+        setTotal(total);
+
+        scrollOnLoadButton();
+      })
+      .catch(error => setError(error))
+
+      .finally(() => setIsLoading(false));
     }
-  }, [searchQuery], );
+  }, [searchQuery, currentPage, setError, images]);
 
   const getImages = () => {
     setIsLoading(true);
