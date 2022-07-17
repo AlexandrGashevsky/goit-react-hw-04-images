@@ -16,12 +16,14 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [largeImage, setLargeImage] = useState({});
   const [total, setTotal] = useState(0);
+  
+
   useEffect(() => {
     if (searchQuery) {
       getImages();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchQuery]);
+  }, [searchQuery], );
+
   const getImages = () => {
     setIsLoading(true);
 
@@ -37,6 +39,8 @@ const App = () => {
 
       .finally(() => setIsLoading(false));
   };
+
+  
   const onChangeQuery = query => {
     if (query === searchQuery) {
       return;
@@ -69,7 +73,7 @@ const App = () => {
     <>
       <SearchBar onSubmit={onChangeQuery} />
       <ImageGallery images={images} onImageClick={handleGalleryItem} />
-      {(total !== 0) && needToShowLoadMore && <Button onClick={getImages} />}
+      {(total > images.length) && needToShowLoadMore && <Button onClick={getImages} />}
       {showModal && (
         <Modal onClose={toggleModal}>
           <div className="Close-box">
